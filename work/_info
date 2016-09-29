@@ -1,0 +1,185 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/prjrbks
+vcontrolpath
+Z1 !s110 1448408329
+!i10b 1
+!s100 kK5jCbg=C;SEdmIFKhB=e3
+IzXKh^fT`GGABee^c@:CcY1
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+Z3 w1448401092
+Z4 8ProjectRubiks.v
+Z5 FProjectRubiks.v
+L0 179
+Z6 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z7 !s108 1448408326.137000
+Z8 !s107 ProjectRubiks.v|
+Z9 !s90 -reportprogress|300|ProjectRubiks.v|
+!i113 1
+vcounter
+R1
+!i10b 1
+!s100 7BH1@<Jj5QzBj2^3;UBKm1
+If7j5<Jl6o7kJ^MI3Z=6571
+R2
+R0
+R3
+R4
+R5
+L0 114
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vcounterEnable
+R1
+!i10b 1
+!s100 R37Zcd;>ig^;I6Y>61jHb0
+IGX[AiXQf`[C=KC_N7CX^Y0
+R2
+R0
+R3
+R4
+R5
+L0 777
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+ncounter@enable
+vdatapath
+R1
+!i10b 1
+!s100 _7;EHKVNWgbJC[?A0iFd@0
+IUG7<2]4;7I?BHL`F>ahXB0
+R2
+R0
+R3
+R4
+R5
+L0 129
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vdrawCubeControl
+R1
+!i10b 1
+!s100 AaG1`:YJ=LZ6A3:zZ]I>m3
+Ibd<;AzRaS9ebDYY1J6:lO1
+R2
+R0
+R3
+R4
+R5
+L0 239
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+ndraw@cube@control
+vdrawCubeStateTable
+R1
+!i10b 1
+!s100 K]o9UN`60CCZMmCok01l:2
+I=P]ROD:B_<W]b6hnBdmAb1
+R2
+R0
+R3
+R4
+R5
+L0 696
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+ndraw@cube@state@table
+vProjectRubiks
+!s110 1448408328
+!i10b 1
+!s100 2n@f9<]a;6a3oG8bl=G`e1
+IZY?i2SK10U?;WH?JE6]^[0
+R2
+R0
+R3
+R4
+R5
+L0 2
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+n@project@rubiks
+vregister
+R1
+!i10b 1
+!s100 ==W?Tae3S95daOZ]LHYiI3
+I<=[6P2A788W0Cm_[H1jOJ0
+R2
+R0
+R3
+R4
+R5
+L0 218
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+vstatetable
+R1
+!i10b 1
+!s100 UV`edJzg5Eljk`6Z3ag5K3
+I7m`QT`WQZE004YKQQIdF_0
+R2
+R0
+R3
+R4
+R5
+L0 150
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1

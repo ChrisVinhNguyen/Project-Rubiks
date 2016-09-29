@@ -1,31 +1,32 @@
-module rubikscube(SW,KEY,CLOCK_50);
+/*module rubikscube(SW,KEY,CLOCK_50,cubestate,modifiedcube);
 input [3:0]SW;
 input CLOCK_50;
 input [1:0]KEY;
-wire [161:0] cubestate,modifiedcube;
+wire [161:0] cubestate;
+wire [161:0] modifiedcube;
 
 registercube rc1(cubestate,modifiedcube,CLOCK_50,KEY[0]);
 controller c1(cubestate,modifiedcube,KEY[1],SW[3:0]);
 
-endmodule
+endmodule*/
 
-module registercube(q,d,clock,reset);
+module registercube(q,d,clock,enable,reset);
 	input [161:0]d;
-	input clock,reset;
+	input clock,reset,enable;
 	output reg [161:0]q;
 	always@(posedge clock)
 		begin
-		if(~reset)
-			q<=d;
-		else if(reset)
+		if(reset==1)
 			begin
 			q[26:0]<= 27'b110110110110110110110110110;
-			q[53:27]<= 27'b100100100100100100100100100;
+			q[53:27]<= 27'b101101101101101101101101101;
 			q[80:54]<= 27'b001001001001001001001001001;
-			q[107:81]<= 27'b101101101101101101101101101;
+			q[107:81]<= 27'b100100100100100100100100100;
 			q[134:108]<= 27'b111111111111111111111111111;
 			q[161:135]<= 27'b010010010010010010010010010;
 			end
+		else if(enable==1)
+			q<=d;
 		end
 endmodule
 	
@@ -51,7 +52,7 @@ module controller(cube,cubeout,domove,typeofmove);
 	movefrontc m10(cube,frontc);
 	movefrontcc m11(cube,frontcc);
 	
-	always@(*)
+	always@(posedge domove)
 	case(typeofmove)
 	4'b0001:cubeout=topc;
 	4'b0010:cubeout=topcc;
@@ -90,15 +91,22 @@ begin
 	//top row
 	topc[35:27]<=cube[62:54];
 	topc[62:54]<=cube[89:81];
-	topc[89:81]<=cube[143:135];
-	topc[143:135]<=cube[35:27];
+	//topc[89:81]<=cube[143:135];
+	topc[83:81]<=cube[161:159];
+	topc[86:84]<=cube[158:156];
+	topc[89:87]<=cube[155:153];
+	//topc[143:135]<=cube[35:27];
+	topc[161:159]<=cube[29:27];
+	topc[158:156]<=cube[32:30];
+	topc[155:153]<=cube[35:33];
 
 	//rest of cube the same
 	topc[53:36]<=cube[53:36];
 	topc[80:63]<=cube[80:63];
 	topc[107:90]<=cube[107:90];
 	topc[134:108]<=cube[134:108];
-	topc[161:144]<=cube[161:144];
+	//topc[161:144]<=cube[161:144];
+	topc[152:135]<=cube[152:135];
 end
 endmodule
 
@@ -121,17 +129,24 @@ begin
 	topcc[26:24]<=cube[20:18];
 
 	//top row
-	topcc[35:27]<=cube[141:135];
-	topcc[89:81]<=cube[62:54];
 	topcc[62:54]<=cube[35:27];
-	topcc[143:135]<=cube[89:81];
+	topcc[89:81]<=cube[62:54];
+	//topcc[62:54]<=cube[35:27];
+	topcc[29:27]<=cube[161:159];
+	topcc[32:30]<=cube[158:156];
+	topcc[35:33]<=cube[155:153];
+	//topcc[143:135]<=cube[89:81];
+	topcc[161:159]<=cube[83:81];
+	topcc[158:156]<=cube[86:84];
+	topcc[155:153]<=cube[89:87];
 
 	//rest of cube the same
 	topcc[53:36]<=cube[53:36];
 	topcc[80:63]<=cube[80:63];
 	topcc[107:90]<=cube[107:90];
 	topcc[134:108]<=cube[134:108];
-	topcc[161:144]<=cube[161:144];
+	//topcc[161:144]<=cube[161:144];
+	topcc[152:135]<=cube[152:135];
 end
 endmodule
 
@@ -154,17 +169,27 @@ begin
 	botc[134:132]<=cube[116:114];
 
 	//bottom row
-	botc[53:45]<=cube[161:153];
+	//botc[53:45]<=cube[143:137];
+	botc[47:45]<=cube[143:141];
+	botc[50:48]<=cube[140:138];
+	botc[53:51]<=cube[137:135];
 	botc[80:72]<=cube[53:45];
 	botc[107:99]<=cube[80:72];
-	botc[161:153]<=cube[107:99];
+	//botc[101:99]<=cube[143:141];
+	//botc[104:102]<=cube[140:138];
+	//botc[107:105]<=cube[137:135];
+	//botc[161:153]<=cube[107:99];
+	botc[143:141]<=cube[101:99];
+	botc[140:138]<=cube[104:102];
+	botc[137:135]<=cube[107:105];
 
 	//rest of cube the same
 	botc[26:0]<=cube[26:0];
 	botc[44:27]<=cube[44:27];
 	botc[71:54]<=cube[71:54];
 	botc[98:81]<=cube[98:81];
-	botc[152:135]<=cube[152:135];
+	//botc[152:135]<=cube[152:135];
+   botc[161:144]<=cube[161:144];	
 end
 endmodule
 
@@ -190,15 +215,22 @@ begin
 	//bottom row
 	botcc[53:45]<=cube[80:72];
 	botcc[80:72]<=cube[107:99];
-	botcc[107:99]<=cube[161:153];
-	botcc[161:153]<=cube[53:45];
+	//botcc[107:99]<=cube[161:153];
+	botcc[101:99]<=cube[143:141];
+	botcc[104:102]<=cube[140:138];
+	botcc[107:105]<=cube[137:135];
+	//botcc[161:153]<=cube[53:45];
+	botcc[143:141]<=cube[47:45];
+	botcc[140:138]<=cube[50:48];
+	botcc[137:135]<=cube[53:51];	
 
 	//rest of cube the same
 	botcc[26:0]<=cube[26:0];
 	botcc[44:27]<=cube[44:27];
 	botcc[71:54]<=cube[71:54];
 	botcc[98:81]<=cube[98:81];
-	botcc[152:135]<=cube[152:135];
+	//botcc[152:135]<=cube[152:135];
+	botcc[161:144]<=cube[161:144];	
 end
 endmodule
 ///////////////////////////////////////////////////////////////////////////
@@ -456,7 +488,7 @@ input [161:0] cube;
 		outcube [5:3] <= cube [38:36];
 		outcube [8:6] <= cube [29:27];
 		//bot -> left
-		outcube [47:45] <= cube [135:132];
+		outcube [47:45] <= cube [134:132];
 		outcube [38:36] <= cube [131:129];
 		outcube [29:27] <= cube [128:126];
 		//right -> bot 
